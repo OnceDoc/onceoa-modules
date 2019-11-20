@@ -1,0 +1,12 @@
+<!--#include="/analytics.tmpl"-->
+
+<!-- jQuery -->
+<!--#include="/site.script.tmpl"-->
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/js/jquery.view.js"></script>
+<script src="/js/magicsuggest.js"></script>
+<script src="/js/tinymce/tinymce.min.js"></script>
+<script src="/js/bind.form.js"></script>
+<script src="/js/oncedoc.chooseFile.js"></script>
+
+<script src="/blog/js/blog.js"></script>

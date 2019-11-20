@@ -1,0 +1,7 @@
+{
+    "description": "ask",
+    "version": "0.2.x",
+    "icon": "/ask/img/ask.png",
+    "main": "./svr/ask.main",
+    "disabled": false
+}

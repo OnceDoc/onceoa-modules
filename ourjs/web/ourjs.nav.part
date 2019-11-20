@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="/ourjs/css/ourjs.css">
+<div id="mainNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#siteNav">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand brand-title page-scroll" href="/">
+        <img src="/ourjs/img/ourjs.png" height="40" alt="OnceOA">
+      </a>
+    </div>
+
+    <a href="#page-top"></a>
+
+    <div id="siteNav" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        {{?!it.user || !it.user.username}}
+        <li><a href="{{=CONFIG.MAIN_CONFIG.signInUrl}}">{{=it.local.SIGN_IN}}</a></li>
+        <li><a href="{{=CONFIG.MAIN_CONFIG.signUpUrl}}">{{=it.local.SIGN_UP}}</a></li>
+        {{??}}
+        <li><a href="/blog/root/edit/add">{{=it.local.PUBLISH_POST}}</a></li>
+        <li class="nav-sign">
+          <div class="btn-group dropdown">
+            <a class="btn site-sign-btn" href="#"><span class="username">{{=it.user.username}}</span></a>
+            <a class="btn site-sign-btn dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </a>
+            <!--#include="/control.userMenu.part"-->
+          </div>
+        </li>
+        {{?}}
+      </ul>
+      <form class="navbar-form navbar-right site-search" action="http://cn.bing.com/search" target="_blank">
+        <div class="form-group">
+          <input type="text" name="query" class="form-control" placeholder="搜索" value="{{=it.query || ''}}">
+          <input type="hidden" class="realQuery" name="q" value=" site:ourjs.com">
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+      </form>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"> 分类 <span class="caret"></span> </a>
+          <ul class="dropdown-menu category-menu">
+            <li>
+              <a>关键字</a>
+              <ul class="clearfix">
+                {{~it.keywords:keyword:index}}
+                <li><a href="/home/{{=keyword}}">{{=keyword}}</a></li>
+                {{~}}
+              </ul>
+            </li>
+            <li><a>订阅</a>
+              <ul class="clearfix">
+                <li><a href="/rss/{{=it.keyword || ''}}">RSS</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="/bbs">全端</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

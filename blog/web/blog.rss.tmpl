@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+<channel>
+  <title>OnceDoc 博客</title>
+  <link>http://oncedoc.com/blog/home</link>
+  <description></description>
+  {{~ it.articles :article:index }}
+  <item>
+    <title><![CDATA[{{=article.title}}]]></title>
+    <link>http://oncedoc.com/blog/view/{{=article.id}}</link>
+    <description><![CDATA[{{=article.description || ''}}]]></description>
+  </item>
+  {{~}}
+</channel>
+</rss>

@@ -1,0 +1,46 @@
+<div id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#siteNav">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand brand-title page-scroll" href="/ask">
+        <img src="/img/brand.png" height="40" alt="OnceAir">
+      </a>
+    </div>
+
+    <a href="#page-top"></a>
+
+    <div id="siteNav" class="navbar-collapse collapse">
+      <div class="site-nav">
+        <ul class="nav">
+          <li class="nav-form">
+            <form class="navbar-form" action="/ask" method="GET">
+              <div class="form-group">
+                <input type="text" name="search" class="form-control" placeholder="{{=it.local.SEARCH}}" value="{{=it.search || ''}}">
+              </div>
+              <button type="submit" class="btn btn-default">{{=it.local.SEARCH}}</button>
+            </form>
+          </li>
+          <li class="nav-help"><a href="/page/view/helper">{{=it.local.HELP}}</a></li>
+          {{?!it.user || !it.user.username}}
+          <li class="nav-sign"> <a class="site-sign-btn" href="{{=CONFIG.MAIN_CONFIG.signInUrl}}?url=/ask">{{=it.local.SIGN_IN}}</a> </li>
+          <li class="nav-sign btn-primary"> <a class="site-sign-btn" href="{{=CONFIG.MAIN_CONFIG.signUpUrl}}?url=/ask">{{=it.local.SIGN_UP}}</a> </li>
+          {{??}}
+          <li class="nav-sign">
+            <div class="btn-group dropdown">
+              <a class="btn site-sign-btn" href="#">{{=it.user.username}}</a>
+              <a class="btn site-sign-btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </a>
+              <!--#include="/control.userMenu.part"-->
+            </div>
+          </li>
+          {{?}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

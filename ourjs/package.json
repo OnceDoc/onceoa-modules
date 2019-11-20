@@ -1,0 +1,6 @@
+{
+  "description": "Our JavaScript", 
+  "version": "2.1.0",
+  "icon": "/ourjs/img/ourjs.png",
+  "main": "./svr/ourjs.main"
+}

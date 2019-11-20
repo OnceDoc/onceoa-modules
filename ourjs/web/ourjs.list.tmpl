@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <title>{{=it.title}} | {{=it.local.SITE_BRIEF_TITLE}}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="shortcut icon" href="/ourjs/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="OurJS.com">
+
+  <link href="/css/bootstrap.min.css"     rel="stylesheet">
+  <link href="/css/magicsuggest.css"      rel="stylesheet">
+  <link href="/css/font-awesome.css"      rel="stylesheet">
+  <link href="/css/jquery.bootstrap.css"  rel="stylesheet">
+  <link href="/css/site.css"              rel="stylesheet">
+  <link href="/ask/css/ask.css"           rel="stylesheet">
+  <script>var conf={ _id: '{{=it._id}}', username:'{{=it.username}}', useravatar:'{{=it.useravatar}}'}</script>
+</head>
+<body>
+
+<!--#include="/ourjs/ourjs.nav.part"-->
+
+<div class="container">
+  <div class="row">
+    <br><br><br><br>
+
+    <div class="col-md-8" id="article" >
+      <div class="keywords" id='keyNav'>
+        <ul class="clearfix">
+          <li><a href="/bbs">全部</a></li>
+          {{ for (var i = 0, keyword; i < 10 && keyword; i++, keyword = it.keywords[i]) { }}
+          <li class="{{=it.keyword==keyword?'active':''}}"><a href="/bbs/{{=keyword}}">{{=keyword}}</a></li>
+          {{ } }}
+        </ul>
+      </div>
+      <ul id="comments_list" class="list-unstyled comments avatar-right">
+        {{~ it.articles:article:index }}
+        <li>
+          <div class="num">{{=article.replyNum || 0}}</div>
+          <a class="avatar" href="/userinfo/{{=article.poster}}"><img src="{{=article.avatar || '/img/favicon_72.png'}}"></a>
+          <div class="content">
+            {{?article.verify=='1'}}
+            <i class="icon-star-empty"></i>
+            {{?}}
+            <a href="/detail/{{=article.id}}" target="_blank">{{=article.title || ''}}</a>
+          </div>
+          <div class="info">
+            • {{~article.keyword:keyword:idx}} <a href="/home/{{=keyword}}" target="_blank">{{=keyword}}</a> {{~}}
+            • <a href="/userinfo/{{=article.poster}}" target="_blank">{{=article.poster}}</a>
+            • <span class="formatdate">{{=article.replyTime || article.postdate || 0}}</span>
+          </div>
+        </li>
+        {{~}}
+      </ul>
+      <div class="pagination">{{=it.pagination}}</div>
+    </div>
+
+    <div class="col-md-4">
+      <div class='panel'>
+        <div class="keywords">
+          <ul class="clearfix">
+            <li class="active">全端</li>
+            <li>= 前端 + 后端</li>
+          </ul>
+        </div>
+        {{?it.user.username}}
+        <div class="userAvatar">
+          <a class="avatar" href="/userinfo/{{=it.user.username}}">
+            <img src="{{=it.user.avatar || '/img/favicon_72.png'}}" />
+          </a>
+          <table class="text-center">
+            <tr title="用户名">
+              <td><b><a href="/userinfo/{{=it.user.username}}">{{=it.user.username}}</a></b></td>
+            </tr>
+            <tr>
+              <td>{{=it.user.showname || it.user.nickname || ''}}</td>
+            </tr>
+            {{?it.user.company}}
+            <tr title="公司">
+              <td><b>{{=it.user.company}}</b></td>
+            </tr>
+            <tr title="简介">
+              <td>{{=it.user.briefinfo}}</td>
+            </tr>
+            {{?}}
+          </table>
+        </div>
+        {{??}}
+        <div class="userAvatar">
+          <a class="avatar" data-toggle="modal" href="#signup">
+            <img src="{{=it.user.avatar || '/img/favicon_72.png'}}" />
+          </a>
+          <table>
+            <tr title="用户名">
+              <td><i class="icon-user"></i></td>
+              <td><b><a data-toggle="modal" href="#signup" class="joinNow">立即加入</a></b></td>
+            </tr>
+          </table>
+        </div>
+        {{?}}
+        <div class="headButton">
+          {{?it.user.wechat}}
+          <a class="btn btn-lg btn-success postNow" href="/blog/root/edit/add?url=/ask">我要发贴</a>
+          {{??}}
+          <a class="btn btn-lg btn-success postNow" href="{{=CONFIG.MAIN_CONFIG.signInUrl}}">微信登录 立即发贴</a>
+          {{?}}
+        </div>
+      </div>
+
+      <div class='panel'>
+        <div class="keywords">
+          <ul class="clearfix">
+            <li class="active">阅读</li>
+            <li>近期热门</li>
+          </ul>
+        </div>
+        <ol>
+        {{~OnceDoc.Blog.Root.getRecentHottest():article:index}}
+        {{?index<10}}
+        <li>
+          <a target="_blank" href="/detail/{{=article.id}}">{{=article.title || ''}}</a>
+        </li>
+        {{?}}
+        {{~}}
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+<!--#include="/site.footer.part"-->
+<!--#include="/analytics.tmpl"-->
+<!--#include="/site.script.tmpl"-->
+
+</body>
+</html>

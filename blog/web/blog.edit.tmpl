@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--#include="/site.meta.tmpl"-->
+<title>{{=it.local.EDIT_POST}}</title>
+<!--#include="blog.header.part"-->
+</head>
+<body>
+
+<body id="page-top" class="edit-page">
+
+<!--#include="blog.navbar.part"-->
+
+<!-- Header -->
+<div class="header-bg">
+  <div class="container">
+    <div class="intro-text">
+      <div class="intro-heading">{{=it.local.EDIT_POST}}</div>
+      <div class="intro-lead-in"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <br><br><br>
+
+  <form class="form-horizontal" method="post" id="editArticleForm" action="/blog/root/edit.post" data-ajax="false" data-model="ARTICLE">
+
+    <input type="hidden"  name="id" readonly="readonly">
+
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="inputEmail">{{=it.local.TITLE}}</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text"  name="title">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="inputPassword">{{=it.local.KEYWORDS}}</label>
+      <div class="col-sm-10">
+        <input class="form-control autocomplete" type="text" name="keyword" data-suggest="/blog/keys" data-max="5" >
+
+        {{?it.user.isAdmin}}
+        <div class="text-right">
+          <a href="/dbtools/zset/keys" target="_blank">{{=it.local.TAG_MANAGEMENT}}</a>
+        </div>
+        {{?}}
+      </div>
+    </div>
+
+    {{?ONCEDB_EXTENSION['article']}}
+    {{=OnceDB.getExtensionEditHtml('article', { template: '<div class="form-group"><label class="control-label col-sm-1">{title}</label><div class="col-sm-10">{html}</div></div>' })}}
+    {{?}}
+
+    {{?it.user.isAdmin}}
+    <div class="form-group">
+      <label class="control-label col-sm-1">{{=it.local.POST_SUMMARY}}</label>
+      <div class="col-sm-10">
+        <textarea rows="6" name="summary" placeholder="{{=it.local.POST_SUMMARY}}" class="editor" style="width:100%"
+          data-editor="/css/bootstrap.min.css"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-1">{{=it.local.CAROUSEL}}</label>
+      <div class="col-sm-10">
+        <div class="input-group v-repeat">
+          <input name="slides" type="text" class="form-control" placeholder="{{=it.local.URL}} (http://)">
+          <span class="input-group-btn select-del">
+            <a class="btn btn-default"><i class="glyphicon glyphicon-remove-sign"></i> {{=it.local.DELETE}}</a>
+          </span>
+          <span class="input-group-btn select-file" data-select-file="image">
+            <a class="btn btn-default"><i class="glyphicon glyphicon-ok-sign"></i> {{=it.local.SELECT}}</a>
+          </span>
+          <span class="input-group-btn select-add">
+            <a class="btn btn-default"><i class="glyphicon glyphicon-plus-sign"></i> {{=it.local.ADD}}</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    {{?}}
+
+    <div class="form-group">
+      <label class="control-label col-sm-1">{{=it.local.BODY_OF_POST}}</label>
+      <div class="col-sm-10">
+        {{?!CONFIG.MAIN_CONFIG.noOnceDocSignUp || it.user.isAdmin}}
+        <div class="input-group">
+          <span class="input-group-addon">{{=it.local.FILE}}</span>
+          <input name="file" type="text" class="form-control" placeholder="{{=it.local.FILE_PATH}}">
+          <span class="input-group-btn file-clear">
+            <a class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> {{=it.local.CLEAR}}</a>
+          </span>
+          <span class="input-group-btn file-choose">
+            <a class="btn btn-default"><i class="glyphicon glyphicon-ok-sign"></i> {{=it.local.CHOOSE}}</a>
+          </span>
+        </div>
+        {{?}}
+        <div class="content-editor">
+          <textarea rows="24" name="content" placeholder="{{=it.local.BODY_OF_POST}}" class="editor" style="visibility: hidden;" data-editor="/css/bootstrap.min.css"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center row">
+      <hr><br><br>
+      <button type="submit" class="btn btn-xl btn-primary"> {{=it.local.SAVE_POST}} </button>
+      <br><br>
+    </div>
+  </form>
+
+
+  <br><br><br>
+</div>
+
+<!--#include="blog.footer.part"-->
+<script src="/js/base64.js"></script>
+<script>var ARTICLE=JSON.parse(Base64.decode("{{=it.article}}"))</script>
+<!--#include="blog.script.part"-->
+
+
+</body>
+</html>

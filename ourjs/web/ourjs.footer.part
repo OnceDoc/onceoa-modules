@@ -1,0 +1,14 @@
+<div class="container" style="margin-top:64px">
+  <div class="footer">
+    <div style="margin:0 0 60px 0">
+      <p class="text-center">
+        <img src="/img/police.jpg" alt="Icon" />
+        <a href="http://www.beian.gov.cn" target="_blank">沪公网安备31011202009668号</a> |
+        <a href="http://beian.miit.gov.cn" target="_blank">沪ICP备13020027号-2</a>
+      </p>
+      <div style="text-align: center;line-height: 30px;">
+        &copy; <a href="http://onceai.com" target="_blank">OurJS</a>. All Rights Reserved. OurJS.com
+      </div>
+    </div>
+  </div>
+</div>

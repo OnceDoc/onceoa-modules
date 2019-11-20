@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="3000px"
+	 height="326.5px" viewBox="0 0 1000 326.5" enable-background="new 0 0 1000 326.5" xml:space="preserve"  preserveAspectRatio="none">
+<g id="图层_1" zoomAndPan="disable">
+	<polygon fill="#FFFFFF" fill-opacity="0.16" points="-1128,0 -378,1000 122,1000 -878,0 	"/>
+	<polygon fill="#FFFFFF" fill-opacity="0.12" points="-878,0 122,1000 372,1000 -628,0 	"/>
+	<polygon fill="#FFFFFF" fill-opacity="0.08" points="-628,0 372,1000 622,1000 -378,0 	"/>
+	<polygon fill="#FFFFFF" fill-opacity="0.04" points="-378,0 622,1000 872,1000 -128,0 	"/>
+	<polygon fill="none" points="-128,0 872,1000 1122,1000 122,0 	"/>
+	<polygon fill-opacity="0.025" points="122,0 1122,1000 1372,1000 372,0 	"/>
+	<polygon fill-opacity="0.05" points="372,0 1372,1000 1622,1000 622,0 	"/>
+	<polygon fill-opacity="0.075" points="622,0 1622,1000 1872,1000 872,0 	"/>
+	<polygon fill-opacity="0.1" points="872,0 1872,1000 2122,1000 1122,0 	"/>
+</g>
+<g id="图层_2">
+	<g>
+		<path fill="#F9F9FC" d="M1006.472,623.23H0.385V335.446c85.936-36.789,173.309-53.719,260.765-50.527
+			c105.912,3.844,116.566,33.831,228.656,39.543c144.637,7.359,178.79-39.763,312.335-30.756
+			c68.646,4.578,136.998,22.215,204.331,52.724"/>
+	</g>
+	<g>
+		<path fill="#F9F9FC" fill-opacity="0.5" d="M-10.318,704.808h1016.79L1007.5,303.5c-68.159-30.756-252,20-314,8
+			c-110-8-529.139,32.085-581,1c-72.197-43.277-86.55-3.405-128,0"/>
+	</g>
+	<g>
+		<path fill="#F9F9FC" fill-opacity="0.5" d="M1014.256,746.516L-23.94,728.941L-13.5,331.5c65.337-51.582,369.644-24.503,445-14
+			c85.397,10.498,132.978-28.373,307-3c100.706,14.719,205.066-5.064,261.5-1"/>
+	</g>
+	<g>
+		<path fill="#F9F9FC" fill-opacity="0.5" d="M1023.5,779.681H-66.752L0,301.601c216.883,29.437,320.944,47.334,438.094,9
+			c79.944-26.114,146.819,1.419,205.49-3c170.081-12.742,278.913-53.701,371.981,29.999"/>
+	</g>
+</g>
+</svg>

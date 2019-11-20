@@ -1,0 +1,6 @@
+{
+  "description": "Free Blog Engine, Forum System, Website Template and CMS Platform", 
+  "version": "0.2.x",
+  "icon": "/blog/img/blog.png",
+  "main": "./svr/blog"
+}

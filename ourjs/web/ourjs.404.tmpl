@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{{=it.keyword || it.poster || it.local.BLOG_TITLE || it.local.BLOG}} | {{=it.local.SITE_BRIEF_TITLE}}</title>
+  <meta name="description" content="">
+  <!--#include="/blog/blog.header.part"-->
+</head>
+
+<body id="page-top" class="home-page {{=it.bodyClass || ''}}">
+
+<!--#include="/blog/blog.navbar.part"-->
+
+<!-- Blog -->
+<div id="blog" class="container">
+  <h1 style="margin: 64px; text-align: center;">404 Not Found</h1>
+  <h3 class="text-center">如果您认为是重要内容丢失了，请移步<a href="/bbs">论坛</a>向我们反馈<h3>
+  <br><br><br><hr>
+</div>
+
+<div id="article-panel" class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h5>
+        <i class="glyphicon glyphicon-star-empty"></i>
+        <a href="/home">近期热门 - 点击最多</a>
+      </h5>
+      <ol>
+        {{~OnceDoc.Blog.Root.getRecentHottest():article:index}}
+        {{?index<10}}
+        <li>
+          <a target="_blank" href="/detail/{{=article.id}}">{{=article.title}}</a>
+        </li>
+        {{?}}
+        {{~}}
+      </ol>
+    </div>
+    <div class="col-md-4">
+      <h5>
+        <i class="glyphicon glyphicon-star-empty"></i>
+        &nbsp; <a href="/bbs" target="_blank">全端社区 - 最新回复</a>
+      </h5>
+      <ol>
+        {{~OnceDoc.Blog.Root.getRecent():article:index }}
+        {{?index<10}}
+        <li>
+          <a target="_blank" href="/detail/{{=article.id}}">{{=article.title}}</a>
+        </li>
+        {{?}}
+        {{~}}
+      </ol>
+    </div>
+    <div class="col-md-4">
+      <!--#include="/ourjs/ourjs.sidebar.tmpl"-->
+    </div>
+  </div>
+</div>
+
+
+<!--#include="/blog/blog.footer.part"-->
+<!--#include="/blog/blog.script.part"-->
+
+</body>
+
+</html>

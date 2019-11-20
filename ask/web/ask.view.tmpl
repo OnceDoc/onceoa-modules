@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<title>{{=it.article.title}} | {{=it.local.SITE_BRIEF_TITLE}}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="OnceDoc.com">
+
+<link href="/css/bootstrap.min.css"     rel="stylesheet">
+<link href="/css/magicsuggest.css"      rel="stylesheet">
+<link href="/css/font-awesome.css"      rel="stylesheet">
+<link href="/css/jquery.bootstrap.css"  rel="stylesheet">
+<link href="/css/site.css"              rel="stylesheet">
+<link href="/wiki/css/wiki.css"         rel="stylesheet">
+<link href="/ask/css/ask.css"           rel="stylesheet">
+</head>
+<body>
+
+<!--#include="/ask/ask.nav.part"-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <br><br>
+      <h1>{{=it.article.title}}</h1>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="article" class="col-md-8">
+      <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="{{=it.local.SHARE_TO_WECHAT}}"></a><a href="#" class="bds_linkedin" data-cmd="linkedin" title="{{=it.local.SHARE_TO_LINKEDIN}}"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="{{=it.local.SHARE_TO_SINA_WEIBO}}"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="{{=it.local.SHARE_TO_QZONE}}"></a></div>
+
+      <div id="summary">
+        <a class="avatar"><img width="36" height="36" src="{{=it.article.avatar || '/img/favicon_72.png'}}"></a>
+
+        <b>发布者</b>
+        <a href="/blog/user/{{=it.article.poster || ''}}" target="_blank">{{=it.poster.showname || it.poster.nickname || it.poster.username || it.article.poster}}</a>&nbsp;
+        <b>发布时间</b>
+        <span class="format-datetime date">{{=it.article.postTime || ''}}</span>
+        <br>
+        <b>关键字</b>
+        {{~it.article.keyword:key}}
+        <a class="category" target="_blank" href="/ask/key/{{=key}}">{{=key}}</a>&nbsp;
+        {{~}}
+        {{?it.user.username == it.article.poster || it.user.isAdmin}}
+        <b>管理</b>&nbsp;
+        <a class="cmd-confirm" href="/blog/root/delete/{{=it.article.id}}" target="_blank">删除</a>
+        &nbsp;
+        <a href="/blog/root/edit/{{=it.article.id}}?url=/ask/view/{{=it.article.id}}">修改</a>
+        {{?}}
+        {{?it.user.isAdmin}}
+        &nbsp;
+        <a href="/blog/root/publish/{{=it.article.id}}/0" target="_blank">不发布</a>
+        &nbsp;
+        <a href="/blog/root/publish/{{=it.article.id}}/1" target="_blank">发布</a>
+        &nbsp;
+        <a href="/blog/root/publish/{{=it.article.id}}/2" target="_blank">置顶</a>
+        &nbsp;
+        <a href="/ask/json/private/{{=it.article.id}}/{{=it.article.private==1?0:1}}" target="_blank">{{=it.article.private==1?'公开':'不公开'}}</a>
+        {{?}}
+      </div>
+
+      <div id="content" style="min-height: 240px" class="wiki-content">
+        {{=it.article.content || it.article.summary || ''}}
+      </div>
+
+      <br><br><br><br>
+
+      <div id="count" class="count text-right" data-count="#content">
+        <span></span>
+      </div>
+
+      <div id="comments">
+        <div><b style="font-size:16px">回复</b> ({{=(it.article.replies || []).length}})</div>
+        <ul id="comments_list" class="list-unstyled comments">
+          <li class="comment-tmpl hide">
+            <a class="avatar"><img data-bind="src@avatar" src="/img/favicon_72.png"></a>
+            <div class="info">
+              #<b class="floor" data-bind="index"></b>
+              <a data-bind="user"></a>
+              <span class="format-datetime" data-bind="time"></span>
+            </div>
+            <div class="content" data-bind="text"></div>
+          </li>          
+          {{~ it.article.replies:reply:index }}
+          <li>
+            <a class="avatar"><img src="{{=reply.avatar || '/img/favicon_72.png'}}"></a>
+            <div class="info">
+              #<b class="floor">{{=index+1}}</b>
+              <a href="/blog/user/{{=reply.user || ''}}" target="_blank">{{=reply.user || ''}}</a>
+              <span class="format-datetime">{{=reply.time}}</span>
+              {{?it.user&&it.user.isAdmin}}
+              <b>{{=it.local.MANAGEMENT}}</b>
+              <a class="cmd-confirm" href="/ask/json/reply/del/{{=it.article.id}}/{{=index}}">{{=it.local.DELETE}}</a>
+              {{?}}
+            </div>
+            <div class="content">{{=reply.text || ''}}</div>
+            <div class="command">
+              {{?it.username && !reply.deleted && (reply.user == it.username || it.isAdmin)}}
+              <a class="remove"><i class="glyphicon glyphicon-remove"></i> 删除</a>
+              {{?}}
+            </div>
+          </li>
+          {{~}}
+        </ul>
+        {{?it.user.username}}
+        <form id="replyForm" method="post">
+          <div class="form-group">
+            <input type="hidden" name="id" value="{{=it.article.id || ''}}">
+            <textarea name="text" class="form-control" rows="6"></textarea>
+          </div>
+          <div class="form-group text-right">
+            <button type="submit" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> {{=it.local.ADD}}</button>
+          </div>
+        </form>
+        {{?}}
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div id="article-panel">
+        <!-- <a class="title-highlight" href="/404" target="_blank">访问404页面，寻找丢失儿童</a> -->
+
+        {{?it.article.hottest && it.article.hottest.length}}
+        <h5>
+          <i class="icon-star-empty"></i>
+          &nbsp;热门文章 - 分享最多
+        </h5>
+        <ol>
+        {{~it.article.hottest:article:index}}
+        <li>
+          <a target="_blank" href="/detail/{{=article._id}}">{{=article.title || ''}}</a>
+        </li>
+        {{~}}
+        </ol>
+        <br>
+        {{?}}
+
+        {{?it.article.similar && it.article.similar.length}}
+        <h5><i class="icon-list-alt"></i>&nbsp;相关阅读</h5>
+        <ol>
+        {{~it.article.similar:article:index}}
+          <li>
+            <a target="_blank" href="/detail/{{=article._id}}">{{=article.title || ''}}</a>
+          </li>
+        {{~}}
+        </ol>
+        <br>
+        {{?}}
+
+        <h5><i class="icon-list-alt"></i> &nbsp;关键字</h5>
+        {{~it.article.keyword:keyword:idx}}
+        <a class="tag" target="_blank" href="/ask/key/{{=keyword}}">{{=keyword}}</a>
+        {{~}}
+        <br><br>
+
+        <h5><i class="icon-eye-open"></i> &nbsp;关注我们</h5>
+        <p style="color:#000;margin: 0 0 20px 24px;">
+          我们的微信公众号: OnceDoc
+          <br>
+          打开微信扫一扫即可关注我们:
+          <br><br>
+          <img src="/ask/img/oncedoc.jpg" alt="OnceDoc" width="160" height="160" style="border: solid 1px #666;" />
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<!--#include="/site.footer.part"-->
+<!--#include="/analytics.tmpl"-->
+<!--#include="/site.script.tmpl"-->
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["weixin","linkedin","tsina","qzone"],"viewText":"{{=it.local.SHARE_TO}}","viewSize":"16"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/tinymce/tinymce.min.js"></script>
+<script src="/js/jquery.view.js"></script>
+<script src="/js/oncedoc.common.js"></script>
+<script src="/ask/js/ask.js"></script>
+
+</body>
+</html>
