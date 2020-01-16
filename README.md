@@ -10,6 +10,6 @@
 
 ## 模块块介绍
 
-- Blog博客系统：http://onceoa.com/wiki/view/oncedoc/blog
-- 将OurJS网站迁移到OnceOA: http://onceoa.com/wiki/view/oncedoc/ourjs-migrate
-- 集成Github/LinkedIn第三方登录: http://onceoa.com/wiki/view/oncedoc/social-sign
+- blog 博客系统：http://onceoa.com/wiki/view/oncedoc/blog
+- ourjs 将OurJS网站迁移到OnceOA: http://onceoa.com/wiki/view/oncedoc/ourjs-migrate
+- social-sign 集成Github/LinkedIn第三方登录: http://onceoa.com/wiki/view/oncedoc/social-sign
