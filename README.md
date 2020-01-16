@@ -8,7 +8,7 @@
 
 将这些模块文件夹复制到 /ocneai/oncedoc/mod 目录下，并在应用中心启用即可
 
-## 模块块介绍
+## 模块介绍
 
 - blog 博客系统：http://onceoa.com/wiki/view/oncedoc/blog
 - ourjs 将OurJS网站迁移到OnceOA: http://onceoa.com/wiki/view/oncedoc/ourjs-migrate
