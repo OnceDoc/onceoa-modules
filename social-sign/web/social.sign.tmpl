@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--#include="/site.meta.tmpl"-->
+
+<title>{{=it.local.SOCIAL_SIGN}} | {{=it.local.SITE_BRIEF_TITLE}}</title>
+
+<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="stylesheet" href="/css/font-awesome.css">
+<link rel="stylesheet" href="/css/jquery.bootstrap.css">
+<link rel="stylesheet" href="/css/site.css">
+<!--#include="/site.script.tmpl"-->
+</head>
+
+<body>
+
+<!--#include="/site.header.part"-->
+
+<div class="container">
+  <div style="margin: 24px">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a><i class="fa fa-github"></i> {{=it.local.SOCIAL_SIGN}}</a>
+      </li>
+    </ul>
+    <div class="tab-content" style="border: 1px solid #ddd;border-top: none;padding: 64px 0">
+      <div class="tab-pane active text-center">
+        {{?it.user.username}}
+        <br><br>
+        <ul class="dropdown-menu dropdown-user show" style="position: static; float: none; width: 240px; margin: 0 auto;text-align: center;">
+          <li class="dropdown-user-img">
+            <br>
+            <div style="color: #999">{{=it.user.username}}</div>
+            <br>
+            <div class="img-circle">
+              <img src="{{=it.user.avatar || '/img/favicon_72.png'}}" />
+            </div>
+            <a href="#" title="{{=it.user.nickname || ''}}"> <b>{{=it.user.nickname || ''}}</b> </a>
+            <br>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a href="#"> <i class="glyphicon glyphicon-home"></i> {{=(it.user.province || '')+' '+(it.user.city||'')}} </a>
+          </li>
+          <li role="separator" class="divider"></li>
+        </ul>
+        <div>
+          <br>
+          <br>
+          <a class="btn btn-lg btn-default" href="/sign/out?url=/social-sign/scan">{{=it.local.USER_LOG_OUT}}</a>
+          <a class="btn btn-lg btn-primary" href="/">{{=it.local.BACK_TO_HOME}}</a>
+          <br><br>
+          <br><br>
+        </div>
+        {{??}}
+        <div>
+          <br><br>
+          <br><br>
+
+          <div class="btn-group-vertical">
+            {{?it.githubUrl}}
+            <a class="btn btn-default btn-lg" href="{{=it.githubUrl}}">
+              <i class="fa fa-github"></i> Sign in via Github
+            </a>
+            <br>
+            {{?}}
+
+            {{?it.linkedinUrl}}
+            <a class="btn btn-default btn-lg" href="{{=it.linkedinUrl}}">
+              <i class="fa fa-linkedin"></i> Sign in via LinkedIn
+            </a>
+            <br>
+            {{?}}
+
+            {{?it.facebookUrl}}
+            <a class="btn btn-default btn-lg" href="https://github.com/login/oauth/authorize?client_id=f283ce279713c1c9ac3c&redirect_uri=http://localhost:8064/oauth/redirect">
+              <i class="fa fa-linkedin"></i> Sign in via Facebook
+            </a>
+            <br><br>
+            {{?}}
+          </div>
+
+          <div id="autoSign" style="display: none;">
+            <a href="/wechat-sign/json/autosign/set" class="btn btn-lg btn-primary">登录成功，<b>10</b> 秒后自动跳转，单击此处，以后自动登录</a>
+            <br><br>
+          </div>
+          <br><br>
+        </div>
+        {{?}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--#include="/site.footer.part"-->
+
+</body>
+</html>

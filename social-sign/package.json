@@ -1,0 +1,7 @@
+{
+  "name": "Social-Sign",
+  "description": "Social signin/signup",
+  "version": "0.0.1",
+  "icon": "/social-sign/img/wechat.png",
+  "main": "svr/social.sign"
+}
