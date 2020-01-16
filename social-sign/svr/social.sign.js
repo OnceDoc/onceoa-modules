@@ -66,7 +66,7 @@ app.get('/social-sign/scan', function(req, res) {
 })
 
 app.get('/social-sign/oauth/github/callback', function(req, res) {
-  // 第一步：检查 code 用来交互 access_token; 检查 state 用来写入登录 session
+  // 第一步：检查 code 用来交互 access_token
   var code  = req.query.code
   if (!code) {
     res.send('no code')
